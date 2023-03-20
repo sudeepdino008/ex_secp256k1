@@ -1,13 +1,14 @@
 defmodule ExSecp256k1.MixProject do
   use Mix.Project
 
-  @source_url "https://github.com/omgnetwork/ex_secp256k1"
+  @version "6.6.0"
+  @source_url "https://github.com/sudeepdino008/ex_secp256k1"
 
   def project do
     [
       app: :ex_secp256k1,
       name: "ExSecp256k1",
-      version: "0.6.0",
+      version: @version,
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       compilers: Mix.compilers(),
@@ -35,10 +36,8 @@ defmodule ExSecp256k1.MixProject do
       },
       files: [
         "mix.exs",
-        "native/exsecp256k1/.cargo/config",
-        "native/exsecp256k1/src",
-        "native/exsecp256k1/Cargo.toml",
-        "native/exsecp256k1/Cargo.lock",
+        "native",
+        "checksum-:*exs",
         "lib",
         "LICENSE",
         "README.md",
@@ -70,7 +69,8 @@ defmodule ExSecp256k1.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:rustler, "~> 0.26"}
+      {:rustler, "~> 0.27", optional: true},
+      {:rustler_precompiled, "~> 0.6.1"}
     ]
   end
 end
